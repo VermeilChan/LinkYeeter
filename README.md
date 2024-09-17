@@ -49,3 +49,5 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE).
 
 - **[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/):** For HTML parsing and web scraping.
 - **[Requests](https://docs.python-requests.org/en/latest/):** For handling HTTP requests.
+- **[PyInstaller](https://pyinstaller.org/en/stable/):** For creating standalone executables.
+- **[Fake-UserAgent](https://pypi.org/project/fake-useragent/):** For generating fake user agents to avoid request blocking.
