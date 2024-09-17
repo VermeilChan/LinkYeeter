@@ -201,3 +201,6 @@ pyrightconfig.json
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Other
+addon_links.txt
