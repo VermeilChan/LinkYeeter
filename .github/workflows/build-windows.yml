@@ -35,10 +35,10 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          pyinstaller --noconfirm --onedir --console --icon "Src/Icon/VALF.ico" --name "VALF" --clean --optimize "2" --version-file "version.txt" --add-data "Src/get_addons.py;." "Src/cli.py"   
+          pyinstaller --noconfirm --onefile --console --icon "Src/Icon/LinkYeeter.ico" --name "LinkYeeter" --clean --optimize "2" --version-file "version.txt" --add-data "Src/get_addons.py;."  "Src/cli.py"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: VALF-2.x.x-Windows-x64
-          path: dist/VALF
+          name: LinkYeeter-1.x.x-Windows-x64
+          path: dist/LinkYeeter

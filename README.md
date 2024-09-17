@@ -1,12 +1,11 @@
-# Vermeil's Addon Link Fetcher (VALF)
+# LinkYeeter
 
-**VALF** is a command-line tool designed to simplify the process of fetching addon links from Steam workshop collections. Especially useful for players who use SteamCMD, third-party programs, or other tools to manage their addons.
+**LinkYeeter** is a command-line tool designed to simplify the process of fetching addon links from Steam workshop collections. Especially useful for players who use SteamCMD, third-party programs, or other tools to manage their addons.
 
 ## Features
 
 - 🖥️ **Cross-Platform:** Works on Windows, macOS, and Linux.
 - 🌐 **Steam Collection Scraping:** Extracts all addon links from a given Steam workshop collection URL.
-- 📄 **Saves Links to File:** Automatically saves extracted links to a text file.
 - 🛠️ **Easy to Use:** A simple command-line interface.
 
 ## Requirements
@@ -22,11 +21,11 @@
 
 ## Installation
 
-To install VALF, download the [latest release](https://github.com/VermeilChan/VALF/releases/latest).
+To install LinkYeeter, download the [latest release](https://github.com/VermeilChan/LinkYeeter/releases/latest).
 
-- **Windows:** `VALF-1.x.x-Windows-x64.7z`
-- **Linux:** `VALF-1.x.x-Linux-x64.tar.xz`
-- **macOS:** `VALF-1.x.x-macOS-x64.zip`
+- **Windows:** `LinkYeeter-1.x.x-Windows-x64.7z`
+- **Linux:** `LinkYeeter-1.x.x-Linux-x64.tar.xz`
+- **macOS:** `LinkYeeter-1.x.x-macOS-x64.zip`
 
 ## Usage
 

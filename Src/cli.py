@@ -2,13 +2,13 @@ import sys
 from platform import system, architecture
 from get_addons import get_addons_links
 
-version = "v1.0.0"
+version = "v1.0.1"
 
 def display_menu():
     print(
-        f"\n{'=' * 53}\n"
-        f"Vermeil's Addon Link Fetcher {version}, {system()} ({architecture()[0]})\n"
-        f"{'=' * 53}\n"
+        f"\n{'=' * 35}\n"
+        f"LinkYeeter {version}, {system()} ({architecture()[0]})\n"
+        f"{'=' * 35}\n"
         "Select an option:\n"
         "1. Get addons links\n"
         "2. Exit\n"
