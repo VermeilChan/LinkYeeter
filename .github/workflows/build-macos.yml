@@ -1,0 +1,44 @@
+name: Build macOS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/**'
+      - 'Src/**'
+      - 'version.txt'
+
+jobs:
+  build:
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8.18'
+          architecture: 'x64'
+          cache: 'pip'
+
+      - name: Create virtual environment
+        run: python3 -m venv .venv
+
+      - name: Activate virtual environment
+        run: source .venv/bin/activate
+
+      - name: Install dependencies
+        run: pip install --upgrade requirements.txt
+
+      - name: Build with PyInstaller
+        run: |
+          pyinstaller --noconfirm --onedir --console --name "VALF" --clean --optimize "2" --strip --add-data "Src/get_addons.py:." "Src/cli.py"
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VALF-1.x.x-MacOS-x64
+          path: dist/VALF
