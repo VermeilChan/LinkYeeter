@@ -1,32 +1,49 @@
-import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
+from requests import get, RequestException 
 
 def get_addons_links():
     url = input("Enter the full link to the Steam collection: ").strip()
-    if not url:
-        print("Invalid URL. Please try again.")
+
+    if not (url.startswith("https://steamcommunity.com/sharedfiles/") and "id=" in url):
+        print("Invalid URL format. Please enter a valid Steam collection URL.")
         return
 
     try:
-        response = requests.get(url)
+        print("Fetching collection page...")
+
+        ua = UserAgent()
+        headers = {
+            'User-Agent': ua.random
+        }
+
+        response = get(url, headers=headers)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html.parser')
+
+        soup = BeautifulSoup(response.content, 'html.parser')
 
         links = []
-        for item in soup.find_all('div', class_='collectionItemDetails'):
-            link = item.find('a', href=True)
-            if link:
-                links.append(link['href'])
+        for item in soup.select('div.collectionItem'):
+            link_tag = item.select_one('a[href]')
+            title_tag = item.select_one('.workshopItemTitle')
+
+            if link_tag and title_tag:
+                link = link_tag['href']
+                title = title_tag.text.strip()
+                links.append((link, title))
+                print(f"Processing addon: {title}")
 
         if links:
             file_name = 'addon_links.txt'
             with open(file_name, 'w') as file:
-                for link in links:
+                for link, _ in links:
                     file.write(link + '\n')
 
             print(f"Found {len(links)} links and saved to '{file_name}'.")
         else:
             print("No links found.")
 
-    except requests.RequestException as e:
-        print(f"An error occurred: {e}")
+    except RequestException as e:
+        print(f"An error occurred while fetching the URL: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
