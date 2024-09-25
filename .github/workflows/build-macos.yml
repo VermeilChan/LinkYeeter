@@ -40,5 +40,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: LinkYeeter-1.x.x-MacOS-x64
+          name: LinkYeeter-1.x.x-macOS-x64
           path: dist/LinkYeeter
