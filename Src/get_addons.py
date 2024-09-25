@@ -1,3 +1,4 @@
+# from time import time
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 from requests import Session, RequestException
@@ -11,42 +12,36 @@ def get_addons_links():
 
     try:
         print("Fetching collection page...")
+        # start_time = time()
 
         session = Session()
         ua = UserAgent()
+        session.headers.update({'User-Agent': ua.random})
 
-        user_agent = ua.random
-        session.headers.update({
-            'User-Agent': user_agent
-        })
-
-        print(f"Using User-Agent: {user_agent}")
+        print(f"Using User-Agent: {session.headers['User-Agent']}")
 
         response = session.get(url)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.content, 'html.parser')
 
-        links = []
-        for item in soup.select('div.collectionItem'):
-            link_tag = item.select_one('a[href]')
-            title_tag = item.select_one('.workshopItemTitle')
-
-            if link_tag and title_tag:
-                link = link_tag['href']
-                title = title_tag.text.strip()
-                links.append((link, title))
-                print(f"Processing addon: {title}")
+        links = [
+            (link_tag['href'], title_tag.text.strip())
+            for item in soup.select('div.collectionItem')
+            if (link_tag := item.select_one('a[href]')) and (title_tag := item.select_one('.workshopItemTitle'))
+        ]
 
         if links:
             file_name = 'addon_links.txt'
             with open(file_name, 'w') as file:
-                for link, _ in links:
-                    file.write(link + '\n')
+                file.write('\n'.join(link for link, _ in links) + '\n')
 
             print(f"Found {len(links)} links and saved to '{file_name}'.")
         else:
             print("No links found.")
+
+        # end_time = time()
+        # print(f"Time taken to fetch links: {end_time - start_time:.2f} seconds")
 
     except RequestException as e:
         print(f"An error occurred while fetching the URL: {e}")
