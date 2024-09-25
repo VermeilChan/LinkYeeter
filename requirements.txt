@@ -1,4 +1,5 @@
+nuitka
 requests
 beautifulsoup4
-pyinstaller
 fake-useragent
+setuptools

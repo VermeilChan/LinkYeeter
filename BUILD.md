@@ -21,8 +21,6 @@ LinkYeeter supports the following platforms:
 | Linux            | Debian 12, Ubuntu 20.04, Fedora 38, Arch Linux, OpenSUSE | 64-bit       |
 | macOS            | macOS 14, 13, 12, 11, 10.15                              | 64-bit       |
 
-_Windows 7 is technically supported, but you need PyInstaller 4.10._
-
 # Getting the Source Code
 
 - Download the zip archive from the [latest release](https://github.com/VermeilChan/LinkYeeter/releases/latest). `Source code
@@ -33,7 +31,7 @@ _Windows 7 is technically supported, but you need PyInstaller 4.10._
 You need the following to compile LinkYeeter:
 
 - [Python](https://www.python.org/) 3.8+
-- [PyInstaller](https://www.pyinstaller.org/) 6.6.0+
+- [Nuitka](https://nuitka.net/) 2.4.8+
 - [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) 4.12.3+
 - [Requests](https://pypi.org/project/requests/) 2.32.3+
 
@@ -66,7 +64,7 @@ cd VALF
 py -m venv .venv
 .venv/Scripts/activate
 pip install -r requirements.txt
-pyinstaller --noconfirm --onefile --console --icon "Src/Icon/LinkYeeter.ico" --name "LinkYeeter" --clean --optimize "2" --version-file "version.txt" --add-data "Src/get_addons.py;."  "Src/cli.py"
+nuitka --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --output-filename="LinkYeeter" --remove-output --lto=yes --clang --noinclude-default-mode=error --follow-imports --assume-yes-for-downloads --include-data-file=Src/get_addons.py=./get_addons.py --include-data-file=".venv/Lib/site-packages/fake_useragent/data/browsers.json=./fake_useragent/data/browsers.json" --include-module=pkg_resources --jobs=4 --no-prefer-source-code --experimental=cpp-optimization "Src/cli.py"
 ```
 
 ## Linux
