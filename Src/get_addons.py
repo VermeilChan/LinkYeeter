@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
-from requests import get, RequestException 
+from requests import Session, RequestException
 
 def get_addons_links():
     url = input("Enter the full link to the Steam collection: ").strip()
@@ -12,12 +12,17 @@ def get_addons_links():
     try:
         print("Fetching collection page...")
 
+        session = Session()
         ua = UserAgent()
-        headers = {
-            'User-Agent': ua.random
-        }
 
-        response = get(url, headers=headers)
+        user_agent = ua.random
+        session.headers.update({
+            'User-Agent': user_agent
+        })
+
+        print(f"Using User-Agent: {user_agent}")
+
+        response = session.get(url)
         response.raise_for_status()
 
         soup = BeautifulSoup(response.content, 'html.parser')
