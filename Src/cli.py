@@ -2,7 +2,7 @@ import sys
 from platform import system, architecture
 from get_addons import get_addons_links
 
-version = "v1.0.1"
+version = "v1.0.2"
 
 def display_menu():
     print(
