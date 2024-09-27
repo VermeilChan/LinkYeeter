@@ -64,7 +64,7 @@ cd VALF
 py -m venv .venv
 .venv/Scripts/activate
 pip install -r requirements.txt
-nuitka --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --output-filename="LinkYeeter" --remove-output --lto=yes --clang --noinclude-default-mode=error --follow-imports --assume-yes-for-downloads --include-data-file=Src/get_addons.py=./get_addons.py --include-data-file=".venv/Lib/site-packages/fake_useragent/data/browsers.json=./fake_useragent/data/browsers.json" --include-module=pkg_resources --jobs=4 --no-prefer-source-code --experimental=cpp-optimization "Src/cli.py"
+python.exe -m nuitka --standalone --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --python-flag=-O --python-flag=no_docstrings --python-flag=-S --python-flag=no_warnings --prefer-source-code --follow-imports --output-filename=LinkYeeter --remove-output --clang --jobs=4 --lto=auto --show-anti-bloat-changes --noinclude-setuptools-mode=error --noinclude-pytest-mode=warning --noinclude-unittest-mode=error --noinclude-default-mode=warning --include-data-file=Src/get_addons_links.py=./get_addons_links.py Src/interface.py
 ```
 
 ## Linux
@@ -75,7 +75,7 @@ cd VALF
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pyinstaller --noconfirm --onefile --console --name "LinkYeeter" --clean --optimize "2" --strip --add-data "Src/get_addons.py:."  "Src/cli.py"
+python.exe -m nuitka --standalone --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --python-flag=-O --python-flag=no_docstrings --python-flag=-S --python-flag=no_warnings --prefer-source-code --follow-imports --output-filename=LinkYeeter --remove-output --clang --jobs=4 --lto=auto --linux-icon=Src/Icon/LinkYeeter.png --show-anti-bloat-changes --noinclude-setuptools-mode=error --noinclude-pytest-mode=warning --noinclude-unittest-mode=error --noinclude-default-mode=warning --include-data-file=Src/get_addons_links.py=./get_addons_links.py --include-data-file=browsers.json=./browsers.json Src/interface.py
 ```
 
 ## macOS

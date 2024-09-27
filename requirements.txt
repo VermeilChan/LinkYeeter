@@ -1,5 +1,5 @@
-nuitka
-requests
 beautifulsoup4
 fake-useragent
 setuptools
+requests
+nuitka

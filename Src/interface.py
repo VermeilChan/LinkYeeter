@@ -1,6 +1,6 @@
 import sys
 from platform import system, architecture
-from get_addons import get_addons_links
+from get_addons_links import get_addons_links
 
 version = "v1.0.2"
 
