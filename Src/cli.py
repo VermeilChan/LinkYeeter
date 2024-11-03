@@ -1,14 +1,19 @@
 import sys
-from platform import system, architecture
+from uuid import uuid4
+from datetime import datetime
+from platform import system, architecture, release
 from get_addons import get_addons_links
 
 version = "v1.0.2"
+version += f" ({uuid4().hex[:7]})"
+build_date = datetime.now().strftime("%Y-%m-%d (%A, %B %d, %Y)") # just some placeholder durning dev :)
 
 def display_menu():
+    system_info = get_os_info()
     print(
-        f"\n{'=' * 35}\n"
-        f"LinkYeeter {version}, {system()} ({architecture()[0]})\n"
-        f"{'=' * 35}\n"
+        f"\n{'=' * 55}\n"
+        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: {build_date}.\n"
+        f"{'=' * 55}\n"
         "Select an option:\n"
         "1. Get addons links\n"
         "2. Exit\n"
@@ -24,6 +29,14 @@ def handle_choice(choice):
         options[choice]()
     else:
         print("Please enter a number from 1 to 2.")
+
+def get_linux_info():
+    with open("/etc/os-release") as f:
+        return dict(line.strip().split('=') for line in f)
+
+def get_os_info():
+    os_name = system()
+    return f"{os_name} {release()}" if os_name != "Linux" else get_linux_info().get("PRETTY_NAME", os_name)
 
 def main():
     try:
