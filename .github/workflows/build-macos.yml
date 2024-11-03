@@ -20,8 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9.20'
-          architecture: 'x64'
+          python-version: '3.8.18'
           cache: 'pip'
 
       - name: Create virtual environment
