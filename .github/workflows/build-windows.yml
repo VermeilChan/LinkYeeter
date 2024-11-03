@@ -41,4 +41,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LinkYeeter-1.x.x-Windows-x64
-          path: dist/LinkYeeter
+          path: dist/LinkYeeter.exe
