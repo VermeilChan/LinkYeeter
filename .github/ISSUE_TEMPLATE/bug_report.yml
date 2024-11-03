@@ -39,9 +39,9 @@ body:
     validations:
       required: true
   - type: input
-    id: valf-version
+    id: linkyeeter-version
     attributes:
-      label: What version of VALF are you using?
-      placeholder: ex. VALF 1.0.0
+      label: What version of LinkYeeter are you using?
+      placeholder: ex. LinkYeeter 1.0.2
     validations:
       required: true
