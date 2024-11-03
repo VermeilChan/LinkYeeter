@@ -75,7 +75,7 @@ cd VALF
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python.exe -m nuitka --standalone --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --python-flag=-O --python-flag=no_docstrings --python-flag=-S --python-flag=no_warnings --prefer-source-code --follow-imports --output-filename=LinkYeeter --remove-output --clang --jobs=4 --lto=auto --linux-icon=Src/Icon/LinkYeeter.png --show-anti-bloat-changes --noinclude-setuptools-mode=error --noinclude-pytest-mode=warning --noinclude-unittest-mode=error --noinclude-default-mode=warning --include-data-file=Src/get_addons_links.py=./get_addons_links.py --include-data-file=browsers.json=./browsers.json Src/interface.py
+python3 -m nuitka --standalone --onefile --windows-icon-from-ico="Src/Icon/LinkYeeter.ico" --python-flag=-O --python-flag=no_docstrings --python-flag=-S --python-flag=no_warnings --prefer-source-code --follow-imports --output-filename=LinkYeeter --remove-output --clang --jobs=4 --lto=auto --linux-icon=Src/Icon/LinkYeeter.png --show-anti-bloat-changes --noinclude-setuptools-mode=error --noinclude-pytest-mode=warning --noinclude-unittest-mode=error --noinclude-default-mode=warning --include-data-file=Src/get_addons_links.py=./get_addons_links.py --include-data-file=browsers.json=./browsers.json Src/interface.py
 ```
 
 ## macOS
