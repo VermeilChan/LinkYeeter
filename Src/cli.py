@@ -1,18 +1,14 @@
 import sys
-from uuid import uuid4
-from datetime import datetime
 from platform import system, architecture, release
 from get_addons import get_addons_links
 
 version = "v1.0.2"
-version += f" ({uuid4().hex[:7]})"
-build_date = datetime.now().strftime("%Y-%m-%d (%A, %B %d, %Y)") # just some placeholder durning dev :)
 
 def display_menu():
     system_info = get_os_info()
     print(
         f"\n{'=' * 55}\n"
-        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: {build_date}.\n"
+        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: 2024-11-03 (Sunday, November 03, 2024).\n"
         f"{'=' * 55}\n"
         "Select an option:\n"
         "1. Get addons links\n"
