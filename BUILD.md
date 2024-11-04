@@ -18,8 +18,8 @@ LinkYeeter supports the following platforms:
 | Operating System | Supported Versions                                       | Architecture |
 |------------------|----------------------------------------------------------|--------------|
 | Windows          | 11, 10, 8.1, 8                                           | 64-bit       |
-| Linux            | Debian 12, Ubuntu 20.04, Fedora 38, Arch Linux, OpenSUSE | 64-bit       |
-| macOS            | macOS 14, 13, 12, 11, 10.15                              | 64-bit       |
+| Linux            | Debian 12, Ubuntu 22.04, Fedora 41, Arch Linux, OpenSUSE | 64-bit       |
+| macOS            | macOS 15, 14, 13, 12, 11, 10.15                          | Arm64        |
 
 _Windows 7 is technically supported, but you need PyInstaller 4.10._
 
@@ -33,7 +33,7 @@ _Windows 7 is technically supported, but you need PyInstaller 4.10._
 You need the following to compile LinkYeeter:
 
 - [Python](https://www.python.org/) 3.8+
-- [PyInstaller](https://www.pyinstaller.org/) 6.6.0+
+- [PyInstaller](https://www.pyinstaller.org/) 6.11.0+
 - [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) 4.12.3+
 - [Requests](https://pypi.org/project/requests/) 2.32.3+
 
