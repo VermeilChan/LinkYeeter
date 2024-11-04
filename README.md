@@ -13,8 +13,8 @@
 | Operating System | Supported Versions                                       | Architecture |
 |------------------|----------------------------------------------------------|--------------|
 | Windows          | 11, 10, 8.1, 8                                           | 64-bit       |
-| Linux            | Debian 12, Ubuntu 20.04, Fedora 38, Arch Linux, OpenSUSE | 64-bit       |
-| macOS            | macOS 14, 13, 12, 11, 10.15                              | 64-bit       |
+| Linux            | Debian 12, Ubuntu 22.04, Fedora 41, Arch Linux, OpenSUSE | 64-bit       |
+| macOS            | macOS 15, 14, 13, 12, 11, 10.15                          | Arm64        |
 
 - **RAM Usage:** 20MB
 - **Disk Space:** 25MB
@@ -49,4 +49,3 @@ This project is licensed under the [GNU General Public License v3.0](LICENSE).
 - **[BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/):** For HTML parsing and web scraping.
 - **[Requests](https://docs.python-requests.org/en/latest/):** For handling HTTP requests.
 - **[PyInstaller](https://pyinstaller.org/en/stable/):** For creating standalone executables.
-- **[Fake-UserAgent](https://pypi.org/project/fake-useragent/):** For generating fake user agents to avoid request blocking.
