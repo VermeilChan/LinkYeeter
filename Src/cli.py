@@ -8,7 +8,7 @@ def display_menu():
     system_info = get_os_info()
     print(
         f"\n{'=' * 55}\n"
-        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: 2024-11-03 (Sunday, November 03, 2024).\n"
+        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: 2024-11-04 (Monday, November 04, 2024).\n"
         f"{'=' * 55}\n"
         "Select an option:\n"
         "1. Get addons links\n"
