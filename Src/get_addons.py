@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 from requests import Session, RequestException
 
 def get_addons_links():
@@ -13,10 +12,7 @@ def get_addons_links():
         print("Fetching collection page...")
 
         session = Session()
-        ua = UserAgent()
-        session.headers.update({'User-Agent': ua.random})
-
-        print(f"Using User-Agent: {session.headers['User-Agent']}")
+        session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'})
 
         response = session.get(url)
         response.raise_for_status()
