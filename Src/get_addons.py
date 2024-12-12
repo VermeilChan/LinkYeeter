@@ -1,6 +1,4 @@
-# from time import time
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 from requests import Session, RequestException
 
 def get_addons_links():
@@ -12,11 +10,11 @@ def get_addons_links():
 
     try:
         print("Fetching collection page...")
-        # start_time = time()
 
         session = Session()
-        ua = UserAgent()
-        session.headers.update({'User-Agent': ua.random})
+
+        user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+        session.headers.update({'User-Agent': user_agent})
 
         print(f"Using User-Agent: {session.headers['User-Agent']}")
 
@@ -39,9 +37,6 @@ def get_addons_links():
             print(f"Found {len(links)} links and saved to '{file_name}'.")
         else:
             print("No links found.")
-
-        # end_time = time()
-        # print(f"Time taken to fetch links: {end_time - start_time:.2f} seconds")
 
     except RequestException as e:
         print(f"An error occurred while fetching the URL: {e}")
