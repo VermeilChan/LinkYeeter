@@ -37,11 +37,12 @@ def get_addons_links():
         return
 
     soup = BeautifulSoup(response.content, 'html.parser')
-    links = [
-        (link_tag['href'], title_tag.text.strip())
-        for item in soup.select('div.collectionItem')
-        if (link_tag := item.select_one('a[href]')) and (title_tag := item.select_one('.workshopItemTitle'))
-    ]
+    links = []
+    for item in soup.select('div.collectionItem'):
+        link_tag = item.select_one('a[href]')
+        title_tag = item.select_one('.workshopItemTitle')
+        if link_tag and title_tag:
+            links.append((link_tag['href'], title_tag.text.strip()))
 
     if links:
         is_windows = system() == "Windows"
@@ -57,13 +58,19 @@ def get_addons_links():
             choice = input("\nEnter your choice (1-4): ").strip().lower()
             
             if choice == '1':
-                commands = [f"workshop_download_item 4000 {search(r'id=(\d+)', link).group(1)}" for link, _ in links]
+                commands = []
+                for link, _ in links:
+                    item_id = search(r'id=(\d+)', link).group(1)
+                    commands.append(f"workshop_download_item 4000 {item_id}")
                 content_to_write = '\n'.join(commands) + '\n'
                 save_message = "Saved SteamCMD commands to"
                 tool = "SteamCMD"
                 break
             elif choice == '2':
-                commands = [f"{depotdownloader_tool} -app 4000 -pubfile {search(r'id=(\d+)', link).group(1)}" for link, _ in links]
+                commands = []
+                for link, _ in links:
+                    item_id = search(r'id=(\d+)', link).group(1)
+                    commands.append(f"{depotdownloader_tool} -app 4000 -pubfile {item_id}")
                 content_to_write = '\n'.join(commands) + '\n'
                 save_message = "Saved DepotDownloader commands to"
                 tool = depotdownloader_tool
@@ -74,7 +81,10 @@ def get_addons_links():
                 tool = None
                 break
             elif choice == '4':
-                addon_ids = [search(r'id=(\d+)', link).group(1) for link, _ in links]
+                addon_ids = []
+                for link, _ in links:
+                    item_id = search(r'id=(\d+)', link).group(1)
+                    addon_ids.append(item_id)
                 content_to_write = '\n'.join(addon_ids) + '\n'
                 save_message = f"Saved {len(links)} addon IDs to"
                 tool = None
