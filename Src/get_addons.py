@@ -1,4 +1,5 @@
 from os import path
+from platform import system
 from re import match, search
 from bs4 import BeautifulSoup
 from requests import Session, exceptions
@@ -26,10 +27,10 @@ def get_addons_links():
         print(f"HTTP error: {e}. Collection doesn't exist or unable to access.")
         return
     except exceptions.ConnectionError:
-        print("Unable connect to Steam. Check your internet connection.")
+        print("Unable to connect to Steam. Check your internet connection.")
         return
     except exceptions.Timeout:
-        print("The request timed out. connection might be slow or unstable.")
+        print("The request timed out. Connection might be slow or unstable.")
         return
     except exceptions.RequestException as e:
         print(f"An error occurred while fetching the page: {e}.")
@@ -43,6 +44,44 @@ def get_addons_links():
     ]
 
     if links:
+        is_windows = system() == "Windows"
+        depotdownloader_tool = "DepotDownloader.exe" if is_windows else "DepotDownloader"
+
+        while True:
+            print("\nPlease choose one of the following options:")
+            print("1 - Generate SteamCMD download commands")
+            print("2 - Generate DepotDownloader download commands")
+            print("3 - Only list the addon links (no download commands)")
+            print("4 - Only list the addon IDs")
+            
+            choice = input("\nEnter your choice (1-4): ").strip().lower()
+            
+            if choice == '1':
+                commands = [f"workshop_download_item 4000 {search(r'id=(\d+)', link).group(1)}" for link, _ in links]
+                content_to_write = '\n'.join(commands) + '\n'
+                save_message = "Saved SteamCMD commands to"
+                tool = "SteamCMD"
+                break
+            elif choice == '2':
+                commands = [f"{depotdownloader_tool} -app 4000 -pubfile {search(r'id=(\d+)', link).group(1)}" for link, _ in links]
+                content_to_write = '\n'.join(commands) + '\n'
+                save_message = "Saved DepotDownloader commands to"
+                tool = depotdownloader_tool
+                break
+            elif choice == '3':
+                content_to_write = '\n'.join(link for link, _ in links) + '\n'
+                save_message = f"Found {len(links)} links and saved to"
+                tool = None
+                break
+            elif choice == '4':
+                addon_ids = [search(r'id=(\d+)', link).group(1) for link, _ in links]
+                content_to_write = '\n'.join(addon_ids) + '\n'
+                save_message = f"Saved {len(links)} addon IDs to"
+                tool = None
+                break
+            else:
+                print("Invalid choice. Please enter a number from 1 to 4.")
+
         file_name = f'addon_links-{collection_id}.txt'
         if path.exists(file_name):
             while True:
@@ -55,10 +94,13 @@ def get_addons_links():
                     return
                 else:
                     print("Please enter 'y' or 'n'.")
+
         try:
             with open(file_name, 'w') as file:
-                file.write('\n'.join(link for link, _ in links) + '\n')
-            print(f"Found {len(links)} links and saved to '{file_name}'.\n")
+                file.write(content_to_write)
+            print(f"{save_message} '{file_name}'.")
+            if tool:
+                print(f"You can copy the commands from '{file_name}' to use with {tool}.")
         except IOError as e:
             print(f"Couldn't save the file: {e}. Do you have permission to write here?")
     else:
