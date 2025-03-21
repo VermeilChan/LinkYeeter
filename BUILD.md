@@ -3,13 +3,11 @@
 - [Platforms](#platforms)
 - [Getting the Source Code](#getting-the-source-code)
 - [Dependencies](#dependencies)
-  - [Windows](#dependencies)
+  - [Windows/macOS](#dependencies)
   - [Linux](#linux-dependencies)
-  - [macOS](#dependencies)
 - [Compiling](#compiling)
   - [Windows](#windows-details)
-  - [Linux](#linux-details)
-  - [macOS](#macos-details)
+  - [Linux/macOS](#linux-details)
 
 # Platforms
 
@@ -32,9 +30,9 @@ _Windows 7 is technically supported, but you need PyInstaller 4.10._
 
 You need the following to compile LinkYeeter:
 
-- [Python](https://www.python.org/) 3.9+
-- [PyInstaller](https://www.pyinstaller.org/) 6.6.0+
-- [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) 4.12.3+
+- [Python](https://www.python.org/) 3.10+
+- [PyInstaller](https://www.pyinstaller.org/) 6.12.0+
+- [Beautiful Soup](https://pypi.org/project/beautifulsoup4/) 4.13.3+
 - [Requests](https://pypi.org/project/requests/) 2.32.3+
 
 ## Linux Dependencies
@@ -62,31 +60,20 @@ sudo zypper install -y python3 python3-pip python3-virtualenv
 
 In Command Prompt:
 ```sh
-cd VALF
+cd WLS
 py -m venv .venv
 .venv/Scripts/activate
 pip install -r requirements.txt
-pyinstaller --noconfirm --onefile --console --icon "Src/Icon/LinkYeeter.ico" --name "LinkYeeter" --clean --optimize "2" --version-file "version.txt" --add-data "Src/get_addons.py;."  "Src/cli.py"
+pyinstaller --noconfirm --onefile --console --icon "Src/Icon/WorkshopLinkStealer.ico" --name "WLS" --clean --optimize "2" --version-file "version.txt" --add-data "Src/get_addons.py;." --add-data "Src/utils.py;."  "Src/cli.py"
 ```
 
-## Linux
+## Linux/macOS
 
 In Terminal:
 ```sh
-cd VALF
+cd WLS
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-pyinstaller --noconfirm --onefile --console --name "LinkYeeter" --clean --optimize "2" --strip --add-data "Src/get_addons.py:."  "Src/cli.py"
-```
-
-## macOS
-
-In Terminal:
-```sh
-cd VALF
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-pyinstaller --noconfirm --onefile --console --name "LinkYeeter" --clean --optimize "2" --strip --add-data "Src/get_addons.py:."  "Src/cli.py"
+pyinstaller --noconfirm --onefile --console --name "WLS" --clean --optimize "2" --strip --add-data "Src/get_addons.py:." --add-data "Src/utils.py:."  "Src/cli.py"
 ```
