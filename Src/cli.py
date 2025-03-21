@@ -1,15 +1,22 @@
 import sys
-from platform import system, architecture, release
 from get_addons import get_addons_links
+from utils import get_os_info, wly_version, build_date
+from requests import __version__ as requests_version
+from bs4  import __version__ as beautifulsoup4_version
+from PyInstaller import __version__ as pyinstaller_version
 
-version = "v1.0.2"
+def display_info():
+    print(
+        f"\n{'=' * 75}\n"
+        f"WorkshopLinkStealer {wly_version}, {get_os_info()}.\n"
+        f"Build Date: {build_date}.\n"
+        f"Build Info: Pyinstaller {pyinstaller_version}, BeautifulSoup4 {beautifulsoup4_version}, "
+        f"Requests {requests_version}.\n"
+        f"{'=' * 75}\n"
+    )
 
 def display_menu():
-    system_info = get_os_info()
     print(
-        f"\n{'=' * 55}\n"
-        f"LinkYeeter {version}, {system_info} ({architecture()[0]}).\nBuild Date: 2024-11-04 (Monday, November 04, 2024).\n"
-        f"{'=' * 55}\n"
         "Select an option:\n"
         "1. Get addons links\n"
         "2. Exit\n"
@@ -26,21 +33,13 @@ def handle_choice(choice):
     else:
         print("Please enter a number from 1 to 2.")
 
-def get_linux_info():
-    with open("/etc/os-release") as f:
-        return dict(line.strip().split('=') for line in f)
-
-def get_os_info():
-    os_name = system()
-    return f"{os_name} {release()}" if os_name != "Linux" else get_linux_info().get("PRETTY_NAME", os_name)
-
 def main():
     try:
+        display_info()
         while True:
             display_menu()
-            choice = input("Enter your choice (1-2): ").strip()
-            handle_choice(choice)
-    except KeyboardInterrupt:
+            handle_choice(input("Enter your choice (1-2): ").strip())
+    except (KeyboardInterrupt, EOFError):
         print("\nExiting...")
         sys.exit(0)
 

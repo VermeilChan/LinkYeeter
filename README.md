@@ -1,40 +1,53 @@
-# LinkYeeter
+# WorkshopLinkStealer
 
-**LinkYeeter** is a command-line tool designed to simplify the process of fetching addon links from Steam workshop collections. Especially useful for players who use SteamCMD, third-party programs, or other tools to manage their addons.
+**WLS** is a command-line tool designed to fetch addon links from Steam Workshop collections and provide multiple output options for managing addons. For users who use tools like SteamCMD or DepotDownloader to download Steam Workshop content.
+
+_Currently hardcoded to `4000` (Garry’s Mod). Modify the code for other games if needed._
 
 ## Features
 
 - 🖥️ **Cross-Platform:** Works on Windows, macOS, and Linux.
-- 🌐 **Steam Collection Scraping:** Extracts all addon links from a given Steam workshop collection URL.
-- 🛠️ **Easy to Use:** A simple command-line interface.
+- 🌐 **Steam Collection Scraping:** Extracts addon links from Steam Workshop collection URLs.
+- 📋 **Multiple Output Options:**
+  - Generate SteamCMD download commands.
+  - Generate DepotDownloader download commands.
+  - Save full addon URLs.
+  - Save only addon IDs.
 
 ## Requirements
 
 | Operating System | Supported Versions                                       | Architecture |
 |------------------|----------------------------------------------------------|--------------|
 | Windows          | 11, 10, 8.1, 8                                           | 64-bit       |
-| Linux            | Debian 12, Ubuntu 22.04, Fedora 41, Arch Linux, OpenSUSE | 64-bit       |
-| macOS            | macOS 15, 14, 13, 12, 11, 10.15                          | Arm64        |
+| Linux            | Debian 12, Ubuntu 22.04, Fedora 40, Arch Linux, OpenSUSE | 64-bit       |
+| macOS            | macOS 15, 14, 13, 12, 11, 10.15                          | ARM64        |
 
 - **RAM Usage:** 20MB
 - **Disk Space:** 25MB
 
 ## Installation
 
-To install LinkYeeter, download the [latest release](https://github.com/VermeilChan/LinkYeeter/releases/latest).
-
-- **Windows:** `LinkYeeter-1.x.x-Windows-x64.7z`
-- **Linux:** `LinkYeeter-1.x.x-Linux-x64.tar.xz`
-- **macOS:** `LinkYeeter-1.x.x-macOS-x64.zip`
+Download the latest release from [GitHub Releases](https://github.com/VermeilChan/WLS/releases/latest):
+- **Windows:** `WLS-1.x.x-Windows-x64.7z`
+- **Linux:** `WLS-1.x.x-Linux-x64.tar.xz`
+- **macOS:** `WLS-1.x.x-macOS-Arm64.zip`
 
 ## Usage
 
-Upon launching the program, you will be presented with this options:
+When you run the program, you’ll be prompted to select from several options:
 
-#### Option 1: Get Addon Links
+### 1. **Enter Steam Collection URL:**
+Provide a Workshop collection URL to extract addon links.
 
-- This option prompts you to enter the full link to the Steam workshop collection.
-- The program scrapes the collection page, extracts all addon links, and saves them to a text file (`addon_links.txt`).
+### 2. **Choose an Option:**
+After fetching the collection data, you can choose what to do next:
+- **Generate SteamCMD Download Commands:** Creates download commands for SteamCMD.
+- **Generate DepotDownloader Commands:** Creates download commands for DepotDownloader.
+- **List Addon Links:** Outputs only the addon URLs.
+- **List Addon IDs:** Extracts only the addon IDs.
+
+### 3. **Save Results:**
+The results (links or commands) will be saved to a text file named `addon_links-<collection_id>.txt`.
 
 ## Contributing
 
